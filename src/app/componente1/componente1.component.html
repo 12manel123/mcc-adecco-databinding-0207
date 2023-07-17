@@ -1,0 +1,88 @@
+<div class="container">
+    <h1>Componente con o sin colores de contraste</h1>
+    <div [ngClass]="{'contraste': contraste, 'sin-contraste': !contraste}">
+      <p *ngIf="contraste; else sinContraste">Este es un mensaje de prueba.</p>
+      <ng-template #sinContraste>
+        <p style="color: red;">Este es un mensaje de prueba sin contraste.</p>
+      </ng-template>
+    </div>
+    <button (click)="toggleContraste()">Cambiar Contraste</button>
+  </div>
+  
+
+  <div class="container">
+    <h1>Componente con o sin colores de contraste</h1>
+    <div [ngStyle]="contraste ? {'background-color': '#000', 'color': '#fff'} : {'background-color': '#fff', 'color': '#000'}">
+      <p>Este es un mensaje de prueba.</p>
+    </div>
+    <button (click)="toggleContraste()">Cambiar Contraste</button>
+  </div>
+  
+<div *ngFor="let item of objeto">
+    <p>{{item}}</p>
+</div>
+
+
+<button (click)="toggleContenido()">Mostrar Contenido</button>
+<p *ngIf="mostrarContenido">{{ contenidoVisible }}</p>
+
+
+<ul>
+    <li *ngFor="let heroe of superheroes">{{ heroe }}</li>
+</ul>
+
+<button (click)="ver()">CUCU!</button>
+<p *ngIf="condicion">Me ves</p>
+<p *ngIf="!condicion">No me ves</p>
+
+
+<label>Dime tu edad</label>
+<input [(ngModel)]="edad" type="number">
+<h6>Tu edad es {{edad}}</h6>
+<span *ngIf="edad>=18">Eres {{mayor}}</span>
+<span *ngIf="edad<18">Eres {{menor}}</span>
+<button *ngIf="edad>=18">Entrar</button>
+
+
+
+<label>Eres vegano?</label>
+<input [(ngModel)]="esVegano" type="checkbox">
+<h4 *ngIf="esVegano">Menú vegano:</h4>
+<ul *ngIf="esVegano" style="list-style-type: none;">
+  <li *ngFor="let plato of menuVegano">{{ plato }}</li>
+</ul>
+<h4 *ngIf="!esVegano">Menú sabroso de carne:</h4>
+<ul *ngIf="!esVegano" style="list-style-type: none;">
+  <li *ngFor="let plato of menuCarne">{{ plato }}</li>
+</ul>
+
+
+
+<div class="menu-tabs">
+    <button (click)="tipoMenu = 'vegano'" [class.active]="tipoMenu === 'vegano'">Menú Vegano</button>
+    <button (click)="tipoMenu = 'carne'" [class.active]="tipoMenu === 'carne'">Menú con Carne</button>
+  </div>
+  
+  <h4>Menú:</h4>
+  <ul style="list-style-type: none;" *ngIf="tipoMenu === 'vegano'">
+    <li *ngFor="let plato of menuVegano">{{ plato }}</li>
+  </ul>
+  <ul style="list-style-type: none;" *ngIf="tipoMenu === 'carne'">
+    <li *ngFor="let plato of menuCarne">{{ plato }}</li>
+  </ul>
+  
+
+
+  <label>Selecciona tu tipo de menú:</label>
+<select [(ngModel)]="tipoMenu">
+  <option value="vegano">Vegano</option>
+  <option value="carne">Con Carne</option>
+</select>
+
+<button (click)="mostrarMenu()" *ngIf="tipoMenu === 'vegano'">Mostrar Menú Vegano</button>
+<button (click)="mostrarMenu()" *ngIf="tipoMenu === 'carne'">Mostrar Menú con Carne</button>
+
+<h4 *ngIf="mostrar">Menú:</h4>
+<ul *ngIf="mostrar" style="list-style-type: none;">
+  <li *ngFor="let plato of menu">{{ plato }}</li>
+</ul>
